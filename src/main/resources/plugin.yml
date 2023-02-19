@@ -1,0 +1,13 @@
+name: Alphaevent
+version: '${project.version}'
+main: de.artus.alphaevent.Alphaevent
+api-version: 1.19
+authors: [ ArtusLama ]
+description: A plugin for the event from alpha for the GreenDuck Server
+website: artus-dev.de
+
+commands:
+  startGame:
+    description: ...
+  stopGame:
+    description: ...
