@@ -5,12 +5,10 @@ import de.artus.alphaevent.scoreboard.PlayerScoreboard;
 import de.artus.alphaevent.utils.BarrierLoader;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.title.Title;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.time.Duration;
@@ -40,7 +38,11 @@ public class Game {
         Statistics.reset();
         Bukkit.getOnlinePlayers().forEach(PlayerScoreboard::setScoreboard);
         Checkpoints.resetAll();
-        Bukkit.getOnlinePlayers().forEach(p -> p.teleport(new Location(p.getWorld(), 8, -60, 8, 90, 0)));
+
+        Bukkit.getOnlinePlayers().forEach(p -> {
+            p.teleport(new Location(p.getWorld(), 90.5, -59.5, 7.5, 90, 0));
+        });
+
         BarrierLoader.setBarrier(Checkpoints.checkpointLocations.get(1));
     }
 

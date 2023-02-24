@@ -5,7 +5,6 @@ import de.artus.alphaevent.commands.stopCommand;
 import de.artus.alphaevent.events.*;
 import de.artus.alphaevent.logic.Checkpoints;
 import de.artus.alphaevent.logic.Game;
-import de.artus.alphaevent.logic.PlayerTimer;
 import de.artus.alphaevent.scoreboard.PlayerScoreboard;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -40,6 +39,7 @@ public final class Alphaevent extends JavaPlugin {
                 Bukkit.getOnlinePlayers().forEach(PlayerScoreboard::updateScoreBoard);
             }
         }.runTaskTimer(this, 10, 10);
+
     }
 
     @Override
