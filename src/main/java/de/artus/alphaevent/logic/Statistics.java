@@ -1,6 +1,7 @@
 package de.artus.alphaevent.logic;
 
 import de.artus.alphaevent.utils.Chat;
+import de.artus.alphaevent.utils.PlayerInventory;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -43,8 +44,8 @@ public class Statistics {
 
         calcRanks = new ArrayList<>(rankMap.entrySet());
         calcRanks = calcRanks.stream().sorted(
-                        Comparator.<Map.Entry<PlayerTimer, Integer>>comparingLong(e -> e.getKey().getCurrentTime())
-                                .thenComparing(Map.Entry.comparingByValue()))
+                        Map.Entry.<PlayerTimer, Integer>comparingByValue()
+                                .thenComparingLong(e -> e.getKey().getCurrentTime()).reversed())
                 .collect(Collectors.toList());
 
 

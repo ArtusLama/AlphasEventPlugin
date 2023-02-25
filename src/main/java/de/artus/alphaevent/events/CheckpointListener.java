@@ -4,11 +4,17 @@ import de.artus.alphaevent.logic.Checkpoints;
 
 import de.artus.alphaevent.logic.Game;
 import de.artus.alphaevent.logic.PlayerTimer;
+import de.artus.alphaevent.utils.Chat;
+import de.artus.alphaevent.utils.PlayerInventory;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+
+import java.time.LocalTime;
 
 public class CheckpointListener implements Listener {
 
@@ -26,14 +32,31 @@ public class CheckpointListener implements Listener {
         checkpointLoc.setPitch(0);
 
         if (player.getLocation().getBlock().getLocation().equals(checkpointLoc)) {
-            if (Game.playerTimers.containsKey(player.getUniqueId())) {
-                Game.playerTimers.get(player.getUniqueId()).stopCurrentTimer();
+
+
+
+            Checkpoints.gotCheckpoint(player);
+
+            if (Checkpoints.checkpoints.get(player.getUniqueId()) == 10) {
+                PlayerTimer playerTimer = Game.playerTimers.get(player.getUniqueId());
+                playerTimer.finishedTime = playerTimer.getTotalTime();
+                playerTimer.finished = true;
+                playerTimer.stopCurrentTimer();
+                Chat.sendMessageToAll(ChatColor.GREEN + player.getName() + ChatColor.GRAY + " finished the JumpAndRun in " + ChatColor.GREEN + LocalTime.MIN.plusSeconds(playerTimer.finishedTime).toString().substring(3) + ChatColor.GRAY + "! GG", true);
+                player.setGameMode(GameMode.SPECTATOR);
+                PlayerInventory.showPlayers(player);
+
             } else {
-                Game.playerTimers.put(player.getUniqueId(), new PlayerTimer(player));
+                if (Game.playerTimers.containsKey(player.getUniqueId())) {
+                    Game.playerTimers.get(player.getUniqueId()).stopCurrentTimer();
+                } else {
+                    Game.playerTimers.put(player.getUniqueId(), new PlayerTimer(player));
+                    Game.playerTimers.get(player.getUniqueId()).startNewTimer();
+                }
+
                 Game.playerTimers.get(player.getUniqueId()).startNewTimer();
             }
-            Game.playerTimers.get(player.getUniqueId()).startNewTimer();
-            Checkpoints.gotCheckpoint(player);
+
         }
     }
 }

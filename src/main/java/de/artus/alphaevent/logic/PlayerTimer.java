@@ -12,6 +12,11 @@ public class PlayerTimer {
     public UUID player;
     Map<Integer, Long> times = new HashMap<>();
     Long startTime = 0L;
+
+    public Long finishedTime = 0L;
+    public boolean finished = false;
+
+
     public PlayerTimer(Player player) {
         this.player = player.getUniqueId();
     }
@@ -28,6 +33,7 @@ public class PlayerTimer {
     }
 
     public long getTotalTime() {
+        if (finished) return finishedTime;
         long totalTime = getCurrentTime();
         for (Map.Entry<Integer, Long> time : times.entrySet()) {
             totalTime += time.getValue();

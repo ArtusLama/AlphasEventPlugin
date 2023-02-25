@@ -20,6 +20,12 @@ public class Checkpoints {
         checkpointLocations.put(3, new Location(Game.world, -108, -49, 8, 90, 0));
         checkpointLocations.put(4, new Location(Game.world, -117, -29, 8, 90, 0));
         checkpointLocations.put(5, new Location(Game.world, -123, -55, 8, 90, 0));
+        checkpointLocations.put(6, new Location(Game.world, -166, -52, 8, 90, 0));
+        checkpointLocations.put(7, new Location(Game.world, -207, -41, 14, 90, 0));
+        checkpointLocations.put(8, new Location(Game.world, -210, -29, 10, 90, 0));
+        checkpointLocations.put(9, new Location(Game.world, -210, -25, 19, 90, 0));
+        checkpointLocations.put(10, new Location(Game.world, -210, -25, 36, 90, 0));
+
 
     }
     public static void resetAll() {
@@ -27,7 +33,7 @@ public class Checkpoints {
     }
 
     public static Location getLastCheckpoint(Player player) {
-        Chat.sendMessageToAll("Checkpoint of " + player.getName() + " is " + checkpoints.getOrDefault(player.getUniqueId(), 0), true);
+        //Chat.sendMessageToAll("Checkpoint of " + player.getName() + " is " + checkpoints.getOrDefault(player.getUniqueId(), 0), true);
         return checkpointLocations.get(checkpoints.getOrDefault(player.getUniqueId(), 1));
     }
     public static Location getNextCheckpoint(Player player) {

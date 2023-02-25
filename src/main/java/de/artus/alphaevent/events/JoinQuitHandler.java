@@ -23,7 +23,7 @@ public class JoinQuitHandler implements Listener {
         if (Game.running) {
             e.getPlayer().teleport(Checkpoints.getLastCheckpoint(e.getPlayer()));
         } else  {
-            e.getPlayer().teleport(new Location(e.getPlayer().getWorld(), 90.5, -59.5, 7.5, 90, 0));
+            e.getPlayer().teleport(new Location(e.getPlayer().getWorld(), 97, -60, 4, 90, 0));
             Game.playerTimers.put(e.getPlayer().getUniqueId(), new PlayerTimer(e.getPlayer()));
         }
 

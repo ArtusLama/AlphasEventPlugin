@@ -125,7 +125,7 @@ public class PlayerScoreboard {
 
         Team timer = board.getTeam("timer");
         if (timer != null) {
-            if (Game.running) {
+            if (Game.running && !Game.playerTimers.get(player.getUniqueId()).finished) {
             PlayerTimer playerTimer = Game.playerTimers.get(player.getUniqueId());
             long playerTime = 0;
             if (playerTimer != null && Game.running) playerTime = playerTimer.getCurrentTime();
@@ -168,7 +168,8 @@ public class PlayerScoreboard {
         Team rank1 = board.getTeam("rank1");
         if (rank1 != null)
             try {
-                rank1.setSuffix(ChatColor.GREEN + "" + Bukkit.getPlayer(Statistics.getRanks().get(0).getKey().player).getName());
+                Map.Entry<PlayerTimer, Integer> rank = Statistics.getRanks().get(0);
+                rank1.setSuffix(ChatColor.GREEN + "" + Bukkit.getPlayer(rank.getKey().player).getName() + ChatColor.GRAY + " - " + ChatColor.GOLD + rank.getValue());
             } catch (Exception e) {
                 rank1.setSuffix(ChatColor.RED + "✘");
             }
@@ -177,7 +178,8 @@ public class PlayerScoreboard {
         Team rank2 = board.getTeam("rank2");
         if (rank2 != null)
             try {
-                rank2.setSuffix(ChatColor.GREEN + "" + Bukkit.getPlayer(Statistics.getRanks().get(1).getKey().player).getName());
+                Map.Entry<PlayerTimer, Integer> rank = Statistics.getRanks().get(1);
+                rank2.setSuffix(ChatColor.GREEN + "" + Bukkit.getPlayer(rank.getKey().player).getName() + ChatColor.GRAY + " - " + ChatColor.GOLD + rank.getValue());
             } catch (Exception e) {
                 rank2.setSuffix(ChatColor.RED + "✘");
             }
@@ -186,7 +188,8 @@ public class PlayerScoreboard {
         Team rank3 = board.getTeam("rank3");
         if (rank3 != null)
             try {
-                rank3.setSuffix(ChatColor.GREEN + "" + Bukkit.getPlayer(Statistics.getRanks().get(2).getKey().player).getName());
+                Map.Entry<PlayerTimer, Integer> rank = Statistics.getRanks().get(2);
+                rank3.setSuffix(ChatColor.GREEN + "" + Bukkit.getPlayer(rank.getKey().player).getName() + ChatColor.GRAY + " - " + ChatColor.GOLD + rank.getValue());
             } catch (Exception e) {
                 rank3.setSuffix(ChatColor.RED + "✘");
             }
