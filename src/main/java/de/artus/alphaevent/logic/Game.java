@@ -41,6 +41,8 @@ public class Game {
             p.teleport(new Location(p.getWorld(), 97, -60, 4, 90, 0));
             p.setGameMode(GameMode.ADVENTURE);
         });
+        PlayerInventory.setupLobbyInv();
+        PlayerInventory.showAllPlayers();
 
         BarrierLoader.setBarrier(Checkpoints.checkpointLocations.get(1));
     }

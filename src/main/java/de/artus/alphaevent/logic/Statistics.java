@@ -47,8 +47,6 @@ public class Statistics {
                         Map.Entry.<PlayerTimer, Integer>comparingByValue()
                                 .thenComparingLong(e -> e.getKey().getCurrentTime()).reversed())
                 .collect(Collectors.toList());
-
-
     }
 
 
